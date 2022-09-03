@@ -13,6 +13,14 @@ final class HandleProductType
         $this->repository = $repository;
     }
 
+    public function loadList(): OutputListBoundary
+    {
+        $registrations = $this->repository->loadList();
+        return new OutputListBoundary([
+            'list'=>$registrations
+        ]);  
+    }
+
     public function loadById(InputBoundary $input): OutputBoundary
     {
         $registration = $this->repository->loadById($input->getId());

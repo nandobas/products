@@ -42,4 +42,24 @@ final class ProductType
 
         return $response;
     }
+
+
+    public function handleGetList(Request $request, Response $response, array $args = []): Response
+    {
+        $useCase = new HandleProductType($this->productTypeRepository);
+
+        $outputData = $useCase->loadList();
+
+        $responsePayload = json_encode(
+            $outputData->loadList(),
+        );
+
+        $response = $response
+            ->withHeader('Content-Type', 'application/json')
+            ->withStatus(401);
+
+        $response->getBody()->write($responsePayload);
+
+        return $response;
+    }
 }

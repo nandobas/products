@@ -41,6 +41,21 @@ final class App
 
             echo $response->json($responseAsArray);
         });
+        $this->route
+        ->get('/type')
+        ->callback(function(\PlugRoute\Http\Request $request, \PlugRoute\Http\Response $response) {
+            
+            $requestPsr = PlugRoutePsrAdapter::adaptRequest($request);
+            $responsePsr = PlugRoutePsrAdapter::adaptResponse($response);
+
+            $productTypeResponse = $this->productTypeController->handleGetList($requestPsr, $responsePsr, []);
+            $responseAsArray = json_decode($productTypeResponse->getBody(), true);
+
+            $response->setStatusCode($productTypeResponse->getStatusCode())
+                ->addHeaders($productTypeResponse->getHeaders());
+
+            echo $response->json($responseAsArray);
+        });
     }
 
     public function Start(){

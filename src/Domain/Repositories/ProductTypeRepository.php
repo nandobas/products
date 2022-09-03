@@ -9,6 +9,7 @@ use App\Domain\Entities\ProductType;
 interface ProductTypeRepository
 {
     public function createProductType(ProductType $productType): bool;
+    public function loadList(): array;
     public function loadById(int $id): ProductType;
     public function removeProductType(int $id): bool;
 }

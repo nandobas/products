@@ -38,6 +38,31 @@ final class PdoProductType implements ProductTypeRepository
         return true;
     }
 
+    public function loadList(): array
+    {
+        $statement = $this->pdo->prepare(
+            "
+            SELECT 
+                pt.id, 
+                pt.description 
+            FROM 
+                product.types pt
+            ORDER BY pt.id;
+            "
+        );
+
+        $statement->execute();
+        $records = $statement->fetchAll();
+        
+        if (!$records) {
+            throw new Exception(sprintf("PdoProductType: não existem registros para Product Type", $id));
+        }
+
+        //$type = ProductType::create(['id'=>$record['id'], 'description'=>$record['description']]);
+
+        return $records;
+    }
+
     public function loadById(int $id): ProductType
     {
         $statement = $this->pdo->prepare(
