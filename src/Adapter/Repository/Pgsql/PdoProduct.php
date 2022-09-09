@@ -47,6 +47,32 @@ final class PdoProduct implements ProductRepository
         return true;
     }
 
+    public function loadList(): array
+    {
+        $statement = $this->pdo->prepare(
+            "
+            SELECT 
+                p.id, 
+                p.type_id, 
+                p.name, 
+                p.description, 
+                p.amount 
+            FROM 
+                product.products p
+            ORDER BY p.id;
+            "
+        );
+
+        $statement->execute();
+        $records = $statement->fetchAll();
+        
+        if (!$records) {
+            throw new Exception(sprintf("PdoProduct: não existem registros para Product", $id));
+        }
+
+        return $records;
+    }
+
     public function loadById(int $id): Product
     {
         $statement = $this->pdo->prepare(

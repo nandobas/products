@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\Usecases\HandleProductType;
+namespace App\Domain\Usecases\HandleProduct;
 
 final class OutputBoundary
 {
@@ -12,13 +12,16 @@ final class OutputBoundary
     public function __construct(array $values)
     {
         $this->id = $values['id'];
+        $this->type_id = $values['type_id'];
+        $this->name = $values['name'];
         $this->description = $values['description'];
+        $this->amount = $values['amount'];
     }
 
     public function __get(string $name)
     {
         if (!property_exists($this, $name)) {
-            throw new RuntimeException(sprintf("Invalid Product Type Output Data Property '%s'", $name));
+            throw new RuntimeException(sprintf("Invalid Product Output Data Property '%s'", $name));
         }
 
         return $this->{$name};

@@ -8,3 +8,12 @@ CREATE TABLE product.products (
 );
 ALTER TABLE product.products ADD CONSTRAINT type_id_fkey FOREIGN KEY (type_id) REFERENCES product.types (id);
 
+INSERT into product.products (type_id, name, description, amount) 
+VALUES 
+  (1, 'Coca-Cola', 'Refrigerante',8.55), 
+  (1, 'Fanta', 'Refrigerante',6.75), 
+  (2, 'Caesar Salad', 'Salada com alface e crocantes',12.3), 
+  (3, 'Carne Grelhada', 'Carne tipo grelhada no fogo',15.9), 
+  (3, 'Frango Grelhado', 'Carne tipo ave',14.9), 
+  (4, 'Milk', 'Checolate ao leite',10.55);
+

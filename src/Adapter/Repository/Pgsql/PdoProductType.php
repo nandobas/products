@@ -58,8 +58,6 @@ final class PdoProductType implements ProductTypeRepository
             throw new Exception(sprintf("PdoProductType: não existem registros para Product Type", $id));
         }
 
-        //$type = ProductType::create(['id'=>$record['id'], 'description'=>$record['description']]);
-
         return $records;
     }
 

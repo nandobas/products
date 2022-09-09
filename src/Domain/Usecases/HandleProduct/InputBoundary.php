@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\Usecases\HandleProductType;
+namespace App\Domain\Usecases\HandleProduct;
 
 final class InputBoundary
 {

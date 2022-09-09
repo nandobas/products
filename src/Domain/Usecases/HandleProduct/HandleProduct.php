@@ -1,16 +1,24 @@
 <?php
 
-namespace App\Domain\Usecases\HandleProductType;
+namespace App\Domain\Usecases\HandleProduct;
 
-use App\Domain\Repositories\ProductTypeRepository;
+use App\Domain\Repositories\ProductRepository;
 
-final class HandleProductType
+final class HandleProduct
 {
-    private ProductTypeRepository $repository;
+    private ProductRepository $repository;
 
-    public function __construct(ProductTypeRepository $repository) 
+    public function __construct(ProductRepository $repository) 
     {
         $this->repository = $repository;
+    }
+
+    public function loadList(): OutputListBoundary
+    {
+        $registrations = $this->repository->loadList();
+        return new OutputListBoundary([
+            'list'=>$registrations
+        ]);  
     }
 
     public function loadById(InputBoundary $input): OutputBoundary
@@ -18,7 +26,10 @@ final class HandleProductType
         $registration = $this->repository->loadById($input->getId());
         return new OutputBoundary([
             'id'=>$registration->id,
-            'description'=>$registration->description
+            'type_id'=>$registration->type_id,
+            'name'=>$registration->name,
+            'description'=>$registration->description,
+            'amount'=>$registration->amount
         ]);  
     }
 }
