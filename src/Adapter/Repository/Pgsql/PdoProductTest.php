@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Tests\Repository;
 
-error_reporting(E_ALL ^ E_DEPRECATED);
 use App\Config\AppConfig;
 use App\Infra\Database\PdoConnection;
 use App\Adapter\Repository\Pgsql\PdoProductType;
