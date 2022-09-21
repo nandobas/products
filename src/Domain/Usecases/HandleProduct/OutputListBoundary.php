@@ -13,7 +13,7 @@ final class OutputListBoundary
         $this->list = $list;
     }
 
-    public function loadList():array
+    public function loadList(): array
     {
         return $this->list;
     }

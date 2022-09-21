@@ -6,7 +6,6 @@ namespace App\Adapter\Repository\Pgsql;
 
 use App\Domain\Entities\Product;
 use App\Domain\Repositories\ProductRepository;
-
 use Exception;
 use Throwable;
 use PDO;
@@ -27,17 +26,18 @@ final class PdoProduct implements ProductRepository
         (id, type_id, name, description, amount) VALUES 
         (:id, :type_id, :name, :description, :amount); ";
         $statement = $this->pdo->prepare(
-            $query    
+            $query
         );
-        
+
         $statement->execute(
             [
-                ':id'           => $product->id, 
+                ':id'           => $product->id,
                 ':type_id'      => $product->type_id,
                 ':name'         => $product->name,
                 ':description'  => $product->description,
                 ':amount'       => (float)$product->amount
-            ]);
+            ]
+        );
         $record = $statement->rowCount();
 
         if (!$record) {
@@ -65,7 +65,7 @@ final class PdoProduct implements ProductRepository
 
         $statement->execute();
         $records = $statement->fetchAll();
-        
+
         if (!$records) {
             throw new Exception(sprintf("PdoProduct: não existem registros para Product", $id));
         }
@@ -97,7 +97,7 @@ final class PdoProduct implements ProductRepository
         }
 
         $product = Product::create([
-            'id'           => $record['id'], 
+            'id'           => $record['id'],
             'type_id'      => $record['type_id'],
             'name'         => $record['name'],
             'description'  => $record['description'],

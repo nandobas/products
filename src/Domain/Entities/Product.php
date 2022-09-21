@@ -6,11 +6,11 @@ namespace App\Domain\Entities;
 
 final class Product
 {
-    private int     $id;
-    private int     $type_id;
-    private string  $name;
-    private string  $description;
-    private string  $amount;
+    private int $id;
+    private int $type_id;
+    private string $name;
+    private string $description;
+    private string $amount;
 
     private function __construct(array $values)
     {

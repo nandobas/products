@@ -15,14 +15,14 @@ final class Product
 {
     private ProductRepository $productRepository;
 
-    public function __construct(ProductRepository $productRepository) 
+    public function __construct(ProductRepository $productRepository)
     {
         $this->productRepository = $productRepository;
     }
 
     public function handleGetByID(Request $request, Response $response, array $args = []): Response
     {
-        $useCase = new HandleProduct($this->productRepository);       
+        $useCase = new HandleProduct($this->productRepository);
         $inputData = new InputBoundary(
             (int)$args["id"]
         );

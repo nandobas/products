@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace App\Config;
 
 final class AppConfig
@@ -12,9 +14,9 @@ final class AppConfig
             'port' => '5432',
             'dbname' => 'admin',
             'charset' => 'utf8'
-    ]];
+        ]];
 
-    public function getConfig():Array
+    public function getConfig(): array
     {
         return $this->config;
     }

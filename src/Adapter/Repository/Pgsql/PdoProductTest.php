@@ -1,7 +1,9 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Tests\Repository;
+
 error_reporting(E_ALL ^ E_DEPRECATED);
 use App\Config\AppConfig;
 use App\Infra\Database\PdoConnection;
@@ -15,10 +17,11 @@ use PDO;
 final class TestPdoProduct extends PHPUnitTestCast
 {
     private PDO $pdo;
-    
-    public function __construct($name = null, array $data = [], $dataName = '') {
+
+    public function __construct($name = null, array $data = [], $dataName = '')
+    {
         parent::__construct($name, $data, $dataName);
-         
+
         $appConfig = new AppConfig();
         $pdoConnection = new PdoConnection($appConfig);
         $this->pdo = $pdoConnection->getTx();
@@ -35,7 +38,7 @@ final class TestPdoProduct extends PHPUnitTestCast
         $makePdoProductType->createProductType($productType);
 
         $product = Product::create([
-            'id'           => 100, 
+            'id'           => 100,
             'type_id'      => 60,
             'name'         => 'Mamao Papaia',
             'description'  => 'Fruta mamao importada',

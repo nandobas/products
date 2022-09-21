@@ -8,7 +8,7 @@ final class HandleProductType
 {
     private ProductTypeRepository $repository;
 
-    public function __construct(ProductTypeRepository $repository) 
+    public function __construct(ProductTypeRepository $repository)
     {
         $this->repository = $repository;
     }
@@ -17,16 +17,16 @@ final class HandleProductType
     {
         $registrations = $this->repository->loadList();
         return new OutputListBoundary([
-            'list'=>$registrations
-        ]);  
+            'list' => $registrations
+        ]);
     }
 
     public function loadById(InputBoundary $input): OutputBoundary
     {
         $registration = $this->repository->loadById($input->getId());
         return new OutputBoundary([
-            'id'=>$registration->id,
-            'description'=>$registration->description
-        ]);  
+            'id' => $registration->id,
+            'description' => $registration->description
+        ]);
     }
 }

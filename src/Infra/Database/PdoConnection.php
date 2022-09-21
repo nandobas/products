@@ -1,18 +1,21 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Infra\Database;
+
 use App\Config\AppConfig;
 use PDO;
 
 final class PdoConnection
 {
-    private Array $config;
-    public function __construct(AppConfig $appConfig) {
+    private array $config;
+    public function __construct(AppConfig $appConfig)
+    {
         $this->config = $appConfig->getConfig();
     }
 
-    public function getTx():PDO
+    public function getTx(): PDO
     {
         $config = $this->config;
         $dsn = sprintf(
@@ -21,11 +24,11 @@ final class PdoConnection
             $config['db']['port'],
             $config['db']['dbname']
         );
-    
+
         $pdo = new PDO($dsn, $config['db']['username'], $config['db']['password'], [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-            PDO::ATTR_PERSISTENT => TRUE
+            PDO::ATTR_PERSISTENT => true
         ]);
         return $pdo;
     }

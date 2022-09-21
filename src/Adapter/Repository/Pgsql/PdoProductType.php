@@ -7,7 +7,6 @@ namespace App\Adapter\Repository\Pgsql;
 use App\Domain\Entities\ProductType;
 use App\Domain\Exceptions\ProductTypeNotFoundException;
 use App\Domain\Repositories\ProductTypeRepository;
-
 use Exception;
 use Throwable;
 use PDO;
@@ -25,7 +24,7 @@ final class PdoProductType implements ProductTypeRepository
     {
         $query = " INSERT INTO product.types (id, description) VALUES (:id, :description); ";
         $statement = $this->pdo->prepare(
-            $query    
+            $query
         );
 
         $statement->execute([':id' => $productType->id, ':description' => $productType->description]);
@@ -53,7 +52,7 @@ final class PdoProductType implements ProductTypeRepository
 
         $statement->execute();
         $records = $statement->fetchAll();
-        
+
         if (!$records) {
             throw new Exception(sprintf("PdoProductType: não existem registros para Product Type", $id));
         }
@@ -81,7 +80,7 @@ final class PdoProductType implements ProductTypeRepository
             throw new Exception(sprintf("PdoProductType: Product Type com a ID '%s' não encontrado", $id));
         }
 
-        $type = ProductType::create(['id'=>$record['id'], 'description'=>$record['description']]);
+        $type = ProductType::create(['id' => $record['id'], 'description' => $record['description']]);
 
         return $type;
     }

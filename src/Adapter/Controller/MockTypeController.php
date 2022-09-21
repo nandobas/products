@@ -10,11 +10,12 @@ final class MockTypeController
 {
     private ProductTypeRepository $typeRepository;
 
-    public function __construct(ProductTypeRepository $typeRepository) 
+    public function __construct(ProductTypeRepository $typeRepository)
     {
         $this->typeRepository = $typeRepository;
     }
-    public function test(){
+    public function test()
+    {
         var_dump($this->typeRepository->loadById(1));
     }
 }

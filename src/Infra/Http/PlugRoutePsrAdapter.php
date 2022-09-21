@@ -14,7 +14,7 @@ use Psr\Http\Message\ResponseInterface as ResponsePsr;
 final class PlugRoutePsrAdapter
 {
     public static function adaptRequest(Request $request): RequestPsr
-    {        
+    {
         return new GuzzleRequest(
             $request->method(),
             "http://localhost:8080/{$request->getUrl()}",
